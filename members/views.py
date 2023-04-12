@@ -19,3 +19,15 @@ def details(request, id):
         'mymember' : mymember,
     }
     return HttpResponse(template.render(context, request))
+
+def main(request):
+    template = loader.get_template('main.html')
+    return HttpResponse(template.render())
+
+def testing(request):
+    mydata = Member.objects.all().order_by('joined_date').values()
+    template = loader.get_template('template.html')
+    context = {
+        'mymembers' : mydata,
+    }
+    return HttpResponse(template.render(context, request))
